@@ -69,14 +69,14 @@ layout = {'title': 'Platforms share'}
 fig2 = go.Figure(data=data, layout=layout)
 
 #Let's look at the differences in critics' ratings depending on the genre of the game.
-data = []
-
-for genre in df.Genre.unique():
-    data.append(
-        go.Box(y=df[df.Genre == genre].Critic_Score,
-               name=genre)
-    )
-fig3 = iplot(data, show_link = False)
+# data = []
+#
+# for genre in df.Genre.unique():
+#     data.append(
+#         go.Box(y=df[df.Genre == genre].Critic_Score,
+#                name=genre)
+#     )
+# fig3 = iplot(data, show_link = False)
 
 #Let's plot the dependence of the average user rating and critics' rating by genre
 scores_genres_df = df.groupby('Genre')[['Critic_Score', 'User_Score']].mean()
@@ -193,10 +193,10 @@ app.layout = html.Div(children=[
 
              ),
 
-    dcc.Graph(
-        id='example-graph3',
-        figure=fig3
-    ),
+    # dcc.Graph(
+    #     id='example-graph3',
+    #     figure=fig3
+    # ),
     html.Div(children='''
     Dependence of the average user rating and critics' rating by genre
 '''
