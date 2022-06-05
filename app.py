@@ -244,7 +244,7 @@ app.layout = html.Div([
                 'This dashboard presents a comparative analysis of video game sales by market and by year, '
                 'as well as a graph of the dependence of the average user rating and critics ratings by genre.',
                 style={'color': '#F9F9F8'}),
-            html.Img(src=app.get_asset_url('supply_chain.png'),
+            html.Img(src=app.get_asset_url('Joystick.png'),
                      style={'position': 'relative', 'width': '100%', 'left': '-10px', 'top': '-20px'}),
         ], className='side_bar'),
 
