@@ -70,14 +70,10 @@ trace3 = go.Scatter(
 
 data = [trace0, trace1, trace2, trace3]
 layout = dict(legend=dict(x=-0.04, y=1.09, font=dict(size=10)), legend_orientation="h",
-              title="Sales of Games in different regions over the Years",
-              xaxis=dict(tickmode='linear', tickangle=-90, tickfont=dict(size=10), title="Year of Release", tickwidth=5,
-                         ticklen=8, zeroline=False, gridcolor="white"),
               yaxis=dict(title="Gross Sales in Different Countries", gridcolor="#DCDCDC")
               )
 
 sales_by_regions = go.Figure(data=data, layout=layout)
-#iplot(sales_by_regions)
 
 # Let's build a line plot with the dynamics of the number of released games and their sales by year.
 global_sales_years_df = df.groupby('Year_of_Release')[['Global_Sales']].sum()
@@ -109,7 +105,7 @@ trace1 = go.Scatter(
 )
 
 data = [trace0, trace1]
-layout = {'title': 'Statistics of video games'}
+layout = dict(legend=dict(x=-0.04, y=1.09, font=dict(size=10)), legend_orientation="h")
 
 released_games = go.Figure(data=data, layout=layout)
 
@@ -138,9 +134,8 @@ trace1 = go.Bar(
 )
 
 data = [trace0, trace1]
-layout = {'title': 'Platforms share'}
 
-fig2 = go.Figure(data=data, layout=layout)
+platforms_share = go.Figure(data=data, layout=layout)
 
 #Let's look at the differences in critics' ratings depending on the genre of the game.
 data = []
@@ -249,38 +244,54 @@ app.layout = html.Div([
                      style={'position': 'relative', 'width': '100%', 'left': '-10px', 'top': '-20px'}),
         ], className='side_bar'),
 
+        html.Div(
+            [
+                html.H1("Games Sales overview"),
+                html.P(
+                    "Video games are an extremely popular pastime. They have evolved over the years to offer players almost any type of experience."
+                ),
+                html.P(
+                    "Let's analyze some interesting facts about the video game industry and, of course, about video game sales"
+                    " and conduct this Analysis based on various aspects of the games, such as Sales,"
+                    "Year of Release, Genre, Platform, Publisher of the Game, User Ratings and Critics' Ratings."
+                ),
+            ], style={"margin-left": "2%"}),
         html.Div([
             html.Div([
-                html.Label("1. Global sales by regions",
-                            style={'font-size': 'medium'}),
-                html.Br(),
-                html.Br(),
+                html.Label("Sales of Games in different regions over the Years",
+                            style={'font-size': '20px'}),
                 dcc.Graph(figure=sales_by_regions)
-            ], className='box', style={'width': '63%'}),
+            ], className='box', style={'width': '55%'}),
             html.Div([
-                html.Label("2. Number of released games and their sales", style={'font-size': 'medium'}),
-                html.Br(),
-                html.Br(),
+                html.Label("Number of released games and their sales", style={'font-size': '20px'}),
                 dcc.Graph(figure=released_games)
-            ], className='box', style={'width': '40%'}),
+            ], className='box', style={'width': '55%'}),
+        ], className='row'),
+
+        html.Div([
+                html.H1("Platforms share"),
+                html.P(
+                    "Let's build a bar chart that depict the market share of gaming platforms, calculated by the number of games released and by total revenue."
+                ),
+                html.P(
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+                    " Nulla imperdiet pellentesque suscipit. Mauris porta euismod rhoncus."
+                ),
+            ], style={"margin-left": "2%"}),
+        html.Div([
+            html.Div([
+                html.Label("Platforms share",
+                           style={'font-size': '20px'}),
+                dcc.Graph(figure=platforms_share)
+            ], className='box', style={'width': '60%'}),
+            html.Div([
+                html.H1("The most popular console - PS2", style={'font-size': '20px'}),
+                html.Img(src=app.get_asset_url('SP2.png'),
+                         style={'position': 'relative', 'width': '90%', 'left': '0px', 'height': '90%', 'top': '10%'}),
+            ], className='box', style={'width': '40%', 'padding': '20px'}),
         ], className='row'),
 
 
-
-    dcc.Graph(
-        id='released_games',
-        figure=released_games
-    ),
-    html.Div(children='''
-        Platforms share
-    '''
-
-             ),
-
-    dcc.Graph(
-        id='example-graph2',
-        figure=fig2
-    ),
     html.Div(children='''
     differences in critics' ratings depending on the genre of the game
 '''
