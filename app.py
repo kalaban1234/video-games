@@ -77,7 +77,7 @@ layout = dict(legend=dict(x=-0.04, y=1.09, font=dict(size=10)), legend_orientati
               )
 
 sales_by_regions = go.Figure(data=data, layout=layout)
-iplot(sales_by_regions)
+#iplot(sales_by_regions)
 
 # Let's build a line plot with the dynamics of the number of released games and their sales by year.
 global_sales_years_df = df.groupby('Year_of_Release')[['Global_Sales']].sum()
@@ -229,7 +229,7 @@ layout = go.Layout(
 
 fig5 = {'data': traces, 'layout': layout}
 
-# The App itself
+#--------------------- Application------------------------
 
 app = dash.Dash(__name__)
 
@@ -243,9 +243,9 @@ app.layout = html.Div([
             html.Label(
                 'This dashboard presents a comparative analysis of video game sales by market and by year, '
                 'as well as a graph of the dependence of the average user rating and critics ratings by genre.',
-                style={'color': 'rgb(33 36 35)'}),
+                style={'color': '#F9F9F8'}),
             html.Img(src=app.get_asset_url('supply_chain.png'),
-                     style={'position': 'relative', 'width': '180%', 'left': '-83px', 'top': '-20px'}),
+                     style={'position': 'relative', 'width': '100%', 'left': '-10px', 'top': '-20px'}),
         ], className='side_bar'),
 
         html.Div([
@@ -255,23 +255,17 @@ app.layout = html.Div([
                 html.Br(),
                 html.Br(),
                 dcc.Graph(figure=sales_by_regions)
-            ], className='box', style={'width': '40%'}),
+            ], className='box', style={'width': '63%'}),
             html.Div([
                 html.Label("2. Number of released games and their sales", style={'font-size': 'medium'}),
                 html.Br(),
                 html.Br(),
                 dcc.Graph(figure=released_games)
-            ], className='box', style={'width': '63%'}),
+            ], className='box', style={'width': '40%'}),
         ], className='row'),
-    ], className='main'),
-    html.Div([
-        html.Div([
-            dcc.Graph(
-                id='sales_by_regions',
-                figure=sales_by_regions
-            ),
-                 ], className = 'box', style={'width': '40%'}),
-        ]),
+
+
+
     dcc.Graph(
         id='released_games',
         figure=released_games
@@ -316,7 +310,7 @@ app.layout = html.Div([
         id='example-graph5',
         figure=fig5
     )
-
+    ], className='main'),
 ])
 
 if __name__ == '__main__':
