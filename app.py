@@ -145,8 +145,16 @@ for genre in df.Genre.unique():
         go.Box(y=df[df.Genre == genre].Critic_Score,
                name=genre)
     )
-# fig3 = iplot(data, show_link = False)
-fig3 = go.Figure(data=data, layout=layout)
+Critics_Score = go.Figure(data=data, layout=layout)
+
+data = []
+
+for genre in df.Genre.unique():
+    data.append(
+        go.Box(y=df[df.Genre == genre].User_Score * 10,
+               name=genre)
+    )
+Users_Score_graph = go.Figure(data=data, layout=layout)
 
 # Let's plot the dependence of the average user rating and critics' rating by genre
 scores_genres_df = df.groupby('Genre')[['Critic_Score', 'User_Score']].mean()
@@ -177,7 +185,7 @@ layout = {
     'yaxis': {'title': 'User Score'}
 }
 
-fig4 = go.Figure(data=data, layout=layout)
+bubbles_graph = go.Figure(data=data, layout=layout)
 
 # Let's build histograms of the distributions of user ratings by genre.
 traces = []
@@ -191,7 +199,6 @@ for genre in ['Racing', 'Shooter', 'Sports', 'Action']:
     )
 
 layout = go.Layout(
-    title='User Score Distribution',
     updatemenus=list([
         dict(
             x=-0.05,
@@ -223,7 +230,7 @@ layout = go.Layout(
     ]),
 )
 
-fig5 = {'data': traces, 'layout': layout}
+users_ratings_graph = {'data': traces, 'layout': layout}
 
 #--------------------- Application------------------------
 
@@ -255,6 +262,7 @@ app.layout = html.Div([
                     " and conduct this Analysis based on various aspects of the games, such as Sales,"
                     "Year of Release, Genre, Platform, Publisher of the Game, User Ratings and Critics' Ratings."
                 ),
+                html.Br(),
             ], style={"margin-left": "2%"}),
         html.Div([
             html.Div([
@@ -277,7 +285,9 @@ app.layout = html.Div([
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
                     " Nulla imperdiet pellentesque suscipit. Mauris porta euismod rhoncus."
                 ),
+            html.Br(),
             ], style={"margin-left": "2%"}),
+
         html.Div([
             html.Div([
                 html.Label("Platforms share",
@@ -291,38 +301,85 @@ app.layout = html.Div([
             ], className='box', style={'width': '40%', 'padding': '20px'}),
         ], className='row'),
 
+        html.Div([
+            html.H1('Critics and users ratings depending on the genre of the game'),
+            html.P(
+                "Let's build a bar chart that depict the market share of gaming platforms, calculated by the number of games released and by total revenue."
+            ),
+            html.P(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+                " Nulla imperdiet pellentesque suscipit. Mauris porta euismod rhoncus."
+            ),
+            html.Br(),
+        ], style={"margin-left": "2%"}),
 
-    html.Div(children='''
-    differences in critics' ratings depending on the genre of the game
-'''
+        html.Div([
+                dcc.Tabs(id="tabs graph", value='Critics_Score', children=[
+                    dcc.Tab(label='Critics score distribution',
+                            value='Critics_Score',
+                            children=[dcc.Graph(id='Critics_Score', figure=Critics_Score)]
+                            ),
+                    dcc.Tab(label='Users score distribution',
+                            value='Users_Score_graph',
+                            children=[dcc.Graph(id='Users_Score', figure=Users_Score_graph)]
+                            ),
+                ]),
+        ]),
 
-             ),
+        html.Div([
+            html.H1('Histograms of the distributions of user ratings by genre'),
+            html.P(
+                "Let's build histograms of the distributions of user ratings by genre."
+            ),
+            html.P(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+                " Nulla imperdiet pellentesque suscipit. Mauris porta euismod rhoncus."
+            ),
+            html.Br(),
+        ], style={"margin-left": "2%"}),
+        html.Div([
+                html.Label("User score disctibution",
+                           style={'font-size': '20px'}),
+                dcc.Graph(figure=users_ratings_graph)
+            ], className='box'),
 
-    dcc.Graph(
-        id='example-graph3',
-        figure=fig3
-    ),
-    html.Div(children='''
-    Dependence of the average user rating and critics' rating by genre
-'''
+        html.Div([
+            html.H1('Dependence of the average user rating and critics rating'),
+            html.P(
+                "Let's plot the dependence of the average user rating and critics' rating by genre."
+            ),
+            html.P(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+                " Nulla imperdiet pellentesque suscipit. Mauris porta euismod rhoncus."
+            ),
+            html.Br(),
+        ], style={"margin-left": "2%"}),
+        html.Div([
+            html.Label("User score disctibution",
+                       style={'font-size': '20px'}),
+            dcc.Graph(figure=bubbles_graph)
+        ], className='box'),
 
-             ),
+        html.Div([
+            html.Div([
+                html.P(['Group 1',
+                        html.Br(),
+                        html.Br(),
+                        'Roman Nalobin (m20210365), Viviane Azevedo (m20200852), Somayeh Abbasi (m20200212)'],
+                       style={'font-size': '12px'}),
+            ], style={'width': '60%'}),
 
-    dcc.Graph(
-        id='example-graph4',
-        figure=fig4
-    ),
-    html.Div(children='''
-    histograms of the distributions of user ratings by genre
-'''
-
-             ),
-
-    dcc.Graph(
-        id='example-graph5',
-        figure=fig5
-    )
+            html.Div([
+                html.P(['Sources ',
+                        html.A('Dataset',
+                               href='https://www.kaggle.com/datasets/rush4ratio/video-game-sales-with-ratings/',
+                               target='_blank'),
+                        ],
+                       style={'font-size': '12px'})
+            ], style={'width': '37%'}),
+        ], className='box', style={'display': 'flex'}),
     ], className='main'),
+
 ])
 
 if __name__ == '__main__':
