@@ -248,7 +248,7 @@ app.layout = html.Div([
                 'as well as a graph of the dependence of the average user rating and critics ratings by genre.',
                 style={'color': '#F9F9F8'}),
             html.Img(src=app.get_asset_url('Joystick.png'),
-                     style={'position': 'relative', 'width': '100%', 'left': '-10px', 'top': '-20px'}),
+                     style={'position': 'relative', 'width': '100%', 'left': '-10px', 'top': '20px'}),
         ], className='side_bar'),
 
         html.Div(
@@ -258,12 +258,12 @@ app.layout = html.Div([
                     "Video games are an extremely popular pastime. They have evolved over the years to offer players almost any type of experience."
                 ),
                 html.P(
-                    "Let's analyze some interesting facts about the video game industry and, of course, about video game sales"
+                    "In this Dashboard we analyze some interesting facts about the video game industry and, of course, about video game sales"
                     " and conduct this Analysis based on various aspects of the games, such as Sales,"
                     "Year of Release, Genre, Platform, Publisher of the Game, User Ratings and Critics' Ratings."
                 ),
                 html.Br(),
-            ], style={"margin-left": "2%"}),
+            ], style={"margin-left": "2%", "margin-right": "2%"}),
         html.Div([
             html.Div([
                 html.Label("Sales of Games in different regions over the Years",
@@ -271,7 +271,7 @@ app.layout = html.Div([
                 dcc.Graph(figure=sales_by_regions)
             ], className='box', style={'width': '55%'}),
             html.Div([
-                html.Label("Number of released games and their sales", style={'font-size': '20px'}),
+                html.Label("Number of released Games and their sales", style={'font-size': '20px'}),
                 dcc.Graph(figure=released_games)
             ], className='box', style={'width': '55%'}),
         ], className='row'),
@@ -279,14 +279,13 @@ app.layout = html.Div([
         html.Div([
                 html.H1("Platforms share"),
                 html.P(
-                    "Let's build a bar chart that depict the market share of gaming platforms, calculated by the number of games released and by total revenue."
+                    "Let’s analyze the following bar chart that depicts gaming platforms' market share, calculated by the number of games released and by total revenue."
                 ),
                 html.P(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-                    " Nulla imperdiet pellentesque suscipit. Mauris porta euismod rhoncus."
+                    " In the graph we can identify the platforms with the highest volume of global sales and number of games released."
                 ),
             html.Br(),
-            ], style={"margin-left": "2%"}),
+            ], style={"margin-left": "2%", "margin-right": "2%"}),
 
         html.Div([
             html.Div([
@@ -304,14 +303,14 @@ app.layout = html.Div([
         html.Div([
             html.H1('Critics and users ratings depending on the genre of the game'),
             html.P(
-                "Let's build a bar chart that depict the market share of gaming platforms, calculated by the number of games released and by total revenue."
+                "Let's build a bar chart that depicts the market share of gaming platforms, calculated by the number of games released and by total revenue."
             ),
             html.P(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-                " Nulla imperdiet pellentesque suscipit. Mauris porta euismod rhoncus."
+                "The boxplot chart below shows the differences in critics' ratings depending on the genre of the game. In the first tab, "
+                "we can identify the analysis according to the critics and in the second we can verify the users' evaluation.  ."
             ),
             html.Br(),
-        ], style={"margin-left": "2%"}),
+        ], style={"margin-left": "2%", "margin-right": "2%"}),
 
         html.Div([
                 dcc.Tabs(id="tabs graph", value='Critics_Score', children=[
@@ -329,31 +328,30 @@ app.layout = html.Div([
         html.Div([
             html.H1('Histograms of the distributions of user ratings by genre'),
             html.P(
-                "Let's build histograms of the distributions of user ratings by genre."
+                "Let's build histograms of the distributions of user ratings by genre. "
             ),
             html.P(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-                " Nulla imperdiet pellentesque suscipit. Mauris porta euismod rhoncus."
+                "For the main genres evaluated let's look at the user ratings for the following genres, Racing, Shooter, Sports, and Action."
             ),
             html.Br(),
-        ], style={"margin-left": "2%"}),
+        ], style={"margin-left": "2%", "margin-right": "2%"}),
         html.Div([
                 html.Label("User score disctibution",
-                           style={'font-size': '20px'}),
+                           style={'font-size': '20px', "margin-right": "2%"}),
                 dcc.Graph(figure=users_ratings_graph)
             ], className='box'),
 
         html.Div([
             html.H1('Dependence of the average user rating and critics rating'),
             html.P(
-                "Let's plot the dependence of the average user rating and critics' rating by genre."
+                "The final bubble chart below depicts the relationship between user score and critic score, and overall sales volume by genre. The size of bubble represents the total sales"
             ),
             html.P(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-                " Nulla imperdiet pellentesque suscipit. Mauris porta euismod rhoncus."
+                "There is a similarity between the ratings of the Racing, Shooter, Sports, and Action genres among users and critics. "
+                "On the other hand, the sales volume is more prominent in the Action genre followed by Sports and Shooter."
             ),
             html.Br(),
-        ], style={"margin-left": "2%"}),
+        ], style={"margin-left": "2%", "margin-right": "2%"}),
         html.Div([
             html.Label("User score disctibution",
                        style={'font-size': '20px'}),
