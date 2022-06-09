@@ -180,7 +180,6 @@ trace0 = go.Scatter(
 
 data = [trace0]
 layout = {
-    'title': 'Statistics of video games genres',
     'xaxis': {'title': 'Critic Score'},
     'yaxis': {'title': 'User Score'}
 }
