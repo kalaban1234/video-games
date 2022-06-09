@@ -335,13 +335,13 @@ app.layout = html.Div([
             html.Br(),
         ], style={"margin-left": "2%", "margin-right": "2%"}),
         html.Div([
-                html.Label("User score disctibution",
+                html.Label("User rating distribution",
                            style={'font-size': '20px', "margin-right": "2%"}),
                 dcc.Graph(figure=users_ratings_graph)
             ], className='box'),
 
         html.Div([
-            html.H1('Dependence of the average user rating and critics rating'),
+            html.H1('Dependence of the average user and critics rating'),
             html.P(
                 "The final bubble chart below depicts the relationship between user score and critic score, and overall sales volume by genre. The size of bubble represents the total sales"
             ),
@@ -352,7 +352,7 @@ app.layout = html.Div([
             html.Br(),
         ], style={"margin-left": "2%", "margin-right": "2%"}),
         html.Div([
-            html.Label("User rating distribution",
+            html.Label("Dependence of the average user and critics rating",
                        style={'font-size': '20px'}),
             dcc.Graph(figure=bubbles_graph)
         ], className='box'),
