@@ -241,7 +241,7 @@ server = app.server
 app.layout = html.Div([
     html.Div([
         html.Div([
-            html.H1(children='Video Game Sales with Ratings',
+            html.H1(children='Video Game Sales (with Ratings)',
             style={'color': '#EDEFEB'}),
             html.Label(
                 'This dashboard presents a comparative analysis of video game sales by market and by year, '
@@ -259,8 +259,7 @@ app.layout = html.Div([
                 ),
                 html.P(
                     "In this Dashboard we analyze some interesting facts about the video game industry and, of course, about video game sales"
-                    " and conduct this Analysis based on various aspects of the games, such as Sales,"
-                    "Year of Release, Genre, Platform, Publisher of the Game, User Ratings and Critics' Ratings."
+                    " and conduct this analysis based on various aspects of the games, such as Sales, Year of Release, Genre, Platform, Publisher of the Game, User Ratings and Critics' Ratings."
                 ),
                 html.Br(),
             ], style={"margin-left": "2%", "margin-right": "2%"}),
@@ -271,7 +270,7 @@ app.layout = html.Div([
                 dcc.Graph(figure=sales_by_regions)
             ], className='box', style={'width': '55%'}),
             html.Div([
-                html.Label("Number of released Games and their sales", style={'font-size': '20px'}),
+                html.Label("Number of released Games and their Sales", style={'font-size': '20px'}),
                 dcc.Graph(figure=released_games)
             ], className='box', style={'width': '55%'}),
         ], className='row'),
@@ -296,18 +295,18 @@ app.layout = html.Div([
             html.Div([
                 html.H1("The most popular console - PS2", style={'font-size': '20px'}),
                 html.Img(src=app.get_asset_url('SP2.png'),
-                         style={'position': 'relative', 'width': '90%', 'left': '0px', 'height': '90%', 'top': '10%'}),
+                         style={'position': 'relative', 'width': '90%', 'left': '0px', 'height': '90%', 'top': '0%'}),
             ], className='box', style={'width': '40%', 'padding': '20px'}),
         ], className='row'),
 
         html.Div([
             html.H1('Critics and users ratings depending on the genre of the game'),
             html.P(
-                "Let's build a bar chart that depicts the market share of gaming platforms, calculated by the number of games released and by total revenue."
+                "Let's build a bar chart that represents the market share of gaming platforms, calculated by the number of games released and by total revenue."
             ),
             html.P(
                 "The boxplot chart below shows the differences in critics' ratings depending on the genre of the game. In the first tab, "
-                "we can identify the analysis according to the critics and in the second we can verify the users' evaluation.  ."
+                "we can identify the analysis according to the critics and in the second we can verify the users' evaluation."
             ),
             html.Br(),
         ], style={"margin-left": "2%", "margin-right": "2%"}),
@@ -331,7 +330,7 @@ app.layout = html.Div([
                 "Let's build histograms of the distributions of user ratings by genre. "
             ),
             html.P(
-                "For the main genres evaluated let's look at the user ratings for the following genres, Racing, Shooter, Sports, and Action."
+                "For the main genres evaluated let's look at the user ratings for the following genres: Racing, Shooter, Sports, and Action."
             ),
             html.Br(),
         ], style={"margin-left": "2%", "margin-right": "2%"}),
@@ -353,7 +352,7 @@ app.layout = html.Div([
             html.Br(),
         ], style={"margin-left": "2%", "margin-right": "2%"}),
         html.Div([
-            html.Label("User score disctibution",
+            html.Label("User rating distribution",
                        style={'font-size': '20px'}),
             dcc.Graph(figure=bubbles_graph)
         ], className='box'),
